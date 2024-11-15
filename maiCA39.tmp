@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://beyb5epk0pscm"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_wkc3b"]
+
+[sub_resource type="Gradient" id="Gradient_no0qk"]
+colors = PackedColorArray(0.34902, 0.34902, 0.34902, 1, 0.347817, 0.347817, 0.347817, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f7x3y"]
+gradient = SubResource("Gradient_no0qk")
+width = 800
+height = 800
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_wkc3b")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_f7x3y")
+centered = false
+
+[node name="GameCycle" type="Timer" parent="."]
+wait_time = 0.15
+autostart = true
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Score" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 14.0
+offset_right = 59.0
+offset_bottom = 37.0
+text = "Score
+"
+
+[connection signal="timeout" from="GameCycle" to="." method="_on_game_cycle_timeout"]

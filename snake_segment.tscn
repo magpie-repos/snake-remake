@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://sp4nmxbkjx4k"]
+
+[ext_resource type="Script" path="res://snake_segment.gd" id="1_vr0tv"]
+
+[sub_resource type="Gradient" id="Gradient_udi77"]
+colors = PackedColorArray(0.305882, 0.796078, 0.6, 1, 0.305882, 0.796078, 0.6, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_32txw"]
+gradient = SubResource("Gradient_udi77")
+width = 8
+height = 8
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_76i85"]
+size = Vector2(6, 6)
+
+[node name="SnakeSegment" type="Sprite2D" groups=["snake"]]
+position = Vector2(400, 400)
+texture = SubResource("GradientTexture2D_32txw")
+centered = false
+script = ExtResource("1_vr0tv")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(4, 4)
+shape = SubResource("RectangleShape2D_76i85")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
